@@ -51,5 +51,13 @@ public class SauceDemoTest {
         wait.until(ExpectedConditions.visibilityOfElementLocated(userNameFieldLocator));
 
         ((JavascriptExecutor)driver).executeScript("sauce:job-result=passed");
+
+        printSessionId();
+    }
+
+    private void printSessionId() {
+        String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s",
+                (((RemoteWebDriver) driver).getSessionId()).toString(), "test job name");
+        System.out.println(message);
     }
 }
