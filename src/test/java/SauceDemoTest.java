@@ -23,7 +23,7 @@ public class SauceDemoTest {
     public void setUp() throws MalformedURLException {
         String sauceUserName = System.getenv("SAUCE_USERNAME");
         String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
-        String buildNumber = System.getenv("SAUCE_BAMBOO_BUILDNUMBER");
+        String buildNumber = System.getenv("SAUCE_BAMBOO_BUILDNUMBER") or System.getenv("SAUCE_TC_BUILDNUMBER");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("username", sauceUserName);
