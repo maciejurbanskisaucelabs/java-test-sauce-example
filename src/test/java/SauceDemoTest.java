@@ -39,7 +39,7 @@ public class SauceDemoTest {
         capabilities.setCapability("version", "85");
         capabilities.setCapability("build", "Sample App - Java-Junit");
         capabilities.setCapability("name", "Simple test");
-        capabilities.setCapability("build",buildNumber);
+        capabilities.setCapability("build","205");
 
         driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
         wait = new WebDriverWait(driver, 5);
