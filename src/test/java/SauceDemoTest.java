@@ -23,19 +23,25 @@ public class SauceDemoTest {
     public void setUp() throws MalformedURLException {
         String sauceUserName = System.getenv("SAUCE_USERNAME");
         String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
-        String buildNumber = System.getenv("SAUCE_BAMBOO_BUILDNUMBER") or System.getenv("SAUCE_TC_BUILDNUMBER");
+        String buildNumber = System.getenv("SAUCE_TC_BUILDNUMBER"); 
+        String sauceUrl = String.format("https://%s:%s@ondemand.saucelabs.com:443/wd/hub",sauceUserName,sauceAccessKey);
+
+        System.out.println("------------------");
+        System.out.println(buildNumber);
+        System.out.println(System.getenv("SAUCE_BAMBOO_BUILDNUMBER"));
+        System.out.println("------------------");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("username", sauceUserName);
         capabilities.setCapability("accessKey", sauceAccessKey);
         capabilities.setCapability("browserName", "Chrome");
         capabilities.setCapability("platform", "Windows 10");
-        capabilities.setCapability("version", "80");
+        capabilities.setCapability("version", "85");
         capabilities.setCapability("build", "Sample App - Java-Junit");
         capabilities.setCapability("name", "Simple test");
         capabilities.setCapability("build",buildNumber);
 
-        driver = new RemoteWebDriver(new URL("https://ondemand.saucelabs.com/wd/hub"), capabilities);
+        driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
         wait = new WebDriverWait(driver, 5);
     }
 
